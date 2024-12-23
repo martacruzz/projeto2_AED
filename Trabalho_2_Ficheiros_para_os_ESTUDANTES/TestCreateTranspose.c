@@ -10,9 +10,10 @@
 
 #include "Graph.h"
 
-int main(void) {
+int main(void)
+{
   // What kind of graph is dig01?
-  Graph* dig01 = GraphCreate(6, 1, 0);
+  Graph *dig01 = GraphCreate(6, 1, 0);
   GraphAddEdge(dig01, 1, 2);
   GraphAddEdge(dig01, 1, 4);
   GraphAddEdge(dig01, 3, 4);
@@ -23,7 +24,7 @@ int main(void) {
   GraphCheckInvariants(dig01);
 
   // Create the transpose of dig01
-  Graph* dig02 = GraphCreateTranspose(dig01);
+  Graph *dig02 = GraphCreateTranspose(dig01);
   printf("The transpose graph:\n");
   // Displaying in DOT format
   GraphDisplayDOT(dig02);
@@ -31,8 +32,8 @@ int main(void) {
   GraphCheckInvariants(dig02);
 
   // Reading a directed graph from file
-  FILE* file = fopen("DG_2.txt", "r");
-  Graph* dig03 = GraphFromFile(file);
+  FILE *file = fopen("DG_2.txt", "r");
+  Graph *dig03 = GraphFromFile(file);
   fclose(file);
   // Displaying in DOT format
   GraphDisplayDOT(dig03);
@@ -40,7 +41,7 @@ int main(void) {
   GraphCheckInvariants(dig03);
 
   // Create the transpose of dig03
-  Graph* dig04 = GraphCreateTranspose(dig03);
+  Graph *dig04 = GraphCreateTranspose(dig03);
   printf("The transpose graph:\n");
   // Displaying in DOT format
   GraphDisplayDOT(dig04);
