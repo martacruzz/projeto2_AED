@@ -1,1 +1,7 @@
 *.o
+
+TestAllPairsShortestDistances
+TestBellmanFordAlg
+TestCreateTranspose
+TestEccentricityMeasures
+TestTransitiveClosure
