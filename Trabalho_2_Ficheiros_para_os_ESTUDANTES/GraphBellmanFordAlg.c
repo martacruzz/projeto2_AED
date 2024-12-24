@@ -80,12 +80,41 @@ GraphBellmanFordAlg *GraphBellmanFordAlgExecute(Graph *g,
 
   // THE ALGORTIHM TO BUILD THE SHORTEST-PATHS TREE
 
-  result->distance[0] = 0;                     // set distance of starting node to 0
-  unsigned int numEdges = GraphGetNumEdges(g); // fetch numEdges on g
+  result->distance[startVertex] = 0; // set distance of starting node to 0
+  unsigned int update = 0;
 
   // "relaxation" process
-  for (unsigned int e = 0; e < numEdges; e++) // for each edge on the graph
+  // this process is done at most #v - 1 times
+  for (unsigned int v = 0; v < GraphGetNumVertices(result->graph) - 1; v++) // for #v - 1 times
   {
+
+    for (unsigned int v = 0; v < GraphGetNumVertices(result->graph); v++) // go through all vertices
+    {
+
+      unsigned int *adjacents = GraphGetAdjacentsTo(result->graph, v); // fetch adjacent vertices
+      // the first position of the array points to the number of outgoing adjacent vertices of vertex v (number of edges v->adjacent)
+
+      for (unsigned int e = 1; e <= adjacents[0]; e++) // for each edge (v -> adjacent)
+      {
+        unsigned int adj = adjacents[e]; // fetch adjacent vertex
+        // if distance of predecessor (which is v in this case) is not -1 && distance[v] + 1 < distance[adjacent] -> update
+        if (result->distance[v] != -1 && (result->distance[v] + 1 < result->distance[adj] || result->distance[adj] == -1))
+        {
+          result->distance[adj] = result->distance[v] + 1; // update distance
+          result->predecessor[adj] = v;                    // update predecessor
+          result->marked[adj] = 1;                         // mark vertex
+          update = 1;                                      // state something changed
+        }
+      }
+
+      free(adjacents);
+    }
+    // if nothing changes in this iteration -> stop
+    if (!update)
+    {
+      break;
+    }
+    update = 0;
   }
 
   return result;
