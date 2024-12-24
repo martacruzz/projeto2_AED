@@ -6,10 +6,10 @@
 // GraphAllPairsShortestDistances
 //
 
-// Student Name :
-// Student Number :
-// Student Name :
-// Student Number :
+// Student Name : Marta Cruz
+// Student Number : 119572
+// Student Name : Catarina Ribeiro
+// Student Number : 119467
 
 /*** COMPLETE THE GraphAllPairsShortestDistancesExecute FUNCTION ***/
 
@@ -22,17 +22,19 @@
 #include "Graph.h"
 #include "GraphBellmanFordAlg.h"
 
-struct _GraphAllPairsShortestDistances {
-  int** distance;  // The 2D matrix storing the all-pairs shortest distances
-                   // It is stored as an array of pointers to 1D rows
-                   // Idea: an INDEFINITE distance value is stored as -1
-  Graph* graph;
+struct _GraphAllPairsShortestDistances
+{
+  int **distance; // The 2D matrix storing the all-pairs shortest distances
+                  // It is stored as an array of pointers to 1D rows
+                  // Idea: an INDEFINITE distance value is stored as -1
+  Graph *graph;
 };
 
 // Allocate memory and initialize the distance matrix
 // Compute the distances between vertices by running the Bellman-Ford algorithm
-GraphAllPairsShortestDistances* GraphAllPairsShortestDistancesExecute(
-    Graph* g) {
+GraphAllPairsShortestDistances *GraphAllPairsShortestDistancesExecute(
+    Graph *g)
+{
   assert(g != NULL);
 
   // COMPLETE THE CODE
@@ -40,13 +42,15 @@ GraphAllPairsShortestDistances* GraphAllPairsShortestDistancesExecute(
   return NULL;
 }
 
-void GraphAllPairsShortestDistancesDestroy(GraphAllPairsShortestDistances** p) {
+void GraphAllPairsShortestDistancesDestroy(GraphAllPairsShortestDistances **p)
+{
   assert(*p != NULL);
 
-  GraphAllPairsShortestDistances* aux = *p;
+  GraphAllPairsShortestDistances *aux = *p;
   unsigned int numVertices = GraphGetNumVertices(aux->graph);
 
-  for (unsigned int i = 0; i < numVertices; i++) {
+  for (unsigned int i = 0; i < numVertices; i++)
+  {
     free(aux->distance[i]);
   }
 
@@ -58,8 +62,9 @@ void GraphAllPairsShortestDistancesDestroy(GraphAllPairsShortestDistances** p) {
 
 // Getting the result
 
-int GraphGetDistanceVW(const GraphAllPairsShortestDistances* p, unsigned int v,
-                       unsigned int w) {
+int GraphGetDistanceVW(const GraphAllPairsShortestDistances *p, unsigned int v,
+                       unsigned int w)
+{
   assert(p != NULL);
   assert(v < GraphGetNumVertices(p->graph));
   assert(w < GraphGetNumVertices(p->graph));
@@ -70,19 +75,25 @@ int GraphGetDistanceVW(const GraphAllPairsShortestDistances* p, unsigned int v,
 // DISPLAYING on the console
 
 void GraphAllPairsShortestDistancesPrint(
-    const GraphAllPairsShortestDistances* p) {
+    const GraphAllPairsShortestDistances *p)
+{
   assert(p != NULL);
 
   unsigned int numVertices = GraphGetNumVertices(p->graph);
   printf("Graph distance matrix - %u vertices\n", numVertices);
 
-  for (unsigned int i = 0; i < numVertices; i++) {
-    for (unsigned int j = 0; j < numVertices; j++) {
+  for (unsigned int i = 0; i < numVertices; i++)
+  {
+    for (unsigned int j = 0; j < numVertices; j++)
+    {
       int distanceIJ = p->distance[i][j];
-      if (distanceIJ == -1) {
+      if (distanceIJ == -1)
+      {
         // INFINITY - j was not reached from i
         printf(" INF");
-      } else {
+      }
+      else
+      {
         printf(" %3d", distanceIJ);
       }
     }

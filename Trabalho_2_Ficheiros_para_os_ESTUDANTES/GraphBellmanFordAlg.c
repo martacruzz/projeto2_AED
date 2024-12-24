@@ -6,10 +6,10 @@
 // GraphBellmanFord - Bellman-Ford Algorithm
 //
 
-// Student Name :
-// Student Number :
-// Student Name :
-// Student Number :
+// Student Name : Marta Cruz
+// Student Number : 119572
+// Student Name : Catarina Ribeiro
+// Student Number : 119467
 
 /*** COMPLETE THE GraphBellmanFordAlgExecute FUNCTION ***/
 

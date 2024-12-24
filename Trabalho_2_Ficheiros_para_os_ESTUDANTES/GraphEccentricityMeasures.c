@@ -6,10 +6,10 @@
 // GraphEccentricityMeasures
 //
 
-// Student Name :
-// Student Number :
-// Student Name :
-// Student Number :
+// Student Name : Marta Cruz
+// Student Number : 119572
+// Student Name : Catarina Ribeiro
+// Student Number : 119467
 
 /*** COMPLETE THE GraphEccentricityMeasuresCompute FUNCTION ***/
 /*** COMPLETE THE GraphGetCentralVertices FUNCTION ***/
@@ -24,21 +24,23 @@
 #include "Graph.h"
 #include "GraphAllPairsShortestDistances.h"
 
-struct _GraphEccentricityMeasures {
-  unsigned int*
-      centralVertices;  // centralVertices[0] = number of central vertices
-                        // array size is (number of central vertices + 1)
-  int* eccentricity;    // the eccentricity value of each vertex
-  Graph* graph;         // the graph
-  int graphRadius;      // the graph radius
-  int graphDiameter;    // the graph diameter
+struct _GraphEccentricityMeasures
+{
+  unsigned int *
+      centralVertices; // centralVertices[0] = number of central vertices
+                       // array size is (number of central vertices + 1)
+  int *eccentricity;   // the eccentricity value of each vertex
+  Graph *graph;        // the graph
+  int graphRadius;     // the graph radius
+  int graphDiameter;   // the graph diameter
 };
 
 // Allocate memory
 // Compute the vertex eccentricity values
 // Compute graph radius and graph diameter
 // Compute the set of central vertices
-GraphEccentricityMeasures* GraphEccentricityMeasuresCompute(Graph* g) {
+GraphEccentricityMeasures *GraphEccentricityMeasuresCompute(Graph *g)
+{
   assert(g != NULL);
 
   // COMPLETE THE CODE
@@ -54,10 +56,11 @@ GraphEccentricityMeasures* GraphEccentricityMeasuresCompute(Graph* g) {
   return NULL;
 }
 
-void GraphEccentricityMeasuresDestroy(GraphEccentricityMeasures** p) {
+void GraphEccentricityMeasuresDestroy(GraphEccentricityMeasures **p)
+{
   assert(*p != NULL);
 
-  GraphEccentricityMeasures* aux = *p;
+  GraphEccentricityMeasures *aux = *p;
 
   free(aux->centralVertices);
   free(aux->eccentricity);
@@ -68,20 +71,23 @@ void GraphEccentricityMeasuresDestroy(GraphEccentricityMeasures** p) {
 
 // Getting the computed measures
 
-int GraphGetRadius(const GraphEccentricityMeasures* p) {
+int GraphGetRadius(const GraphEccentricityMeasures *p)
+{
   assert(p != NULL);
 
   return p->graphRadius;
 }
 
-int GraphGetDiameter(const GraphEccentricityMeasures* p) {
+int GraphGetDiameter(const GraphEccentricityMeasures *p)
+{
   assert(p != NULL);
 
   return p->graphDiameter;
 }
 
-int GraphGetVertexEccentricity(const GraphEccentricityMeasures* p,
-                               unsigned int v) {
+int GraphGetVertexEccentricity(const GraphEccentricityMeasures *p,
+                               unsigned int v)
+{
   assert(p != NULL);
   assert(v < GraphGetNumVertices(p->graph));
   assert(p->eccentricity != NULL);
@@ -91,7 +97,8 @@ int GraphGetVertexEccentricity(const GraphEccentricityMeasures* p,
 
 // Getting a copy of the set of central vertices
 // centralVertices[0] = number of central vertices in the set
-unsigned int* GraphGetCentralVertices(const GraphEccentricityMeasures* p) {
+unsigned int *GraphGetCentralVertices(const GraphEccentricityMeasures *p)
+{
   assert(p != NULL);
   assert(p->centralVertices != NULL);
 
@@ -103,6 +110,7 @@ unsigned int* GraphGetCentralVertices(const GraphEccentricityMeasures* p) {
 // Print the graph radius and diameter
 // Print the vertex eccentricity values
 // Print the set of central vertices
-void GraphEccentricityMeasuresPrint(const GraphEccentricityMeasures* p) {
+void GraphEccentricityMeasuresPrint(const GraphEccentricityMeasures *p)
+{
   // COMPLETE THE CODE
 }
