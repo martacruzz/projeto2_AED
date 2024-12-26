@@ -92,7 +92,7 @@ GraphBellmanFordAlg *GraphBellmanFordAlgExecute(Graph *g,
     {
 
       unsigned int *adjacents = GraphGetAdjacentsTo(result->graph, v); // fetch adjacent vertices
-      // the first position of the array points to the number of outgoing adjacent vertices of vertex v (number of edges v->adjacent)
+      // the first position of the array points to the number of outgoing adjacent vertices of vertex v (number of edges of type v->adjacent)
 
       for (unsigned int e = 1; e <= adjacents[0]; e++) // for each edge (v -> adjacent)
       {

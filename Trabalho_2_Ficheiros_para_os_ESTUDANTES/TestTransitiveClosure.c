@@ -11,9 +11,10 @@
 #include "Graph.h"
 #include "GraphTransitiveClosure.h"
 
-int main(void) {
+int main(void)
+{
   // What kind of graph is dig01?
-  Graph* dig01 = GraphCreate(6, 1, 0);
+  Graph *dig01 = GraphCreate(6, 1, 0);
   GraphAddEdge(dig01, 1, 2);
   GraphAddEdge(dig01, 1, 4);
   GraphAddEdge(dig01, 3, 4);
@@ -24,7 +25,7 @@ int main(void) {
 
   GraphCheckInvariants(dig01);
 
-  Graph* tcdig01 = GraphComputeTransitiveClosure(dig01);
+  Graph *tcdig01 = GraphComputeTransitiveClosure(dig01);
   printf("The transitive closure:\n");
   // Displaying in DOT format
   GraphDisplayDOT(tcdig01);
@@ -33,8 +34,8 @@ int main(void) {
   GraphCheckInvariants(tcdig01);
 
   // Reading a directed graph from file
-  FILE* file = fopen("DG_2.txt", "r");
-  Graph* dig03 = GraphFromFile(file);
+  FILE *file = fopen("DG_2.txt", "r");
+  Graph *dig03 = GraphFromFile(file);
   fclose(file);
   // Displaying in DOT format
   GraphDisplayDOT(dig03);
@@ -42,7 +43,7 @@ int main(void) {
 
   GraphCheckInvariants(dig03);
 
-  Graph* tcdig03 = GraphComputeTransitiveClosure(dig03);
+  Graph *tcdig03 = GraphComputeTransitiveClosure(dig03);
   printf("The transitive closure:\n");
   // Displaying in DOT format
   GraphDisplayDOT(tcdig03);

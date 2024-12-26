@@ -33,6 +33,25 @@ Graph *GraphComputeTransitiveClosure(Graph *g)
   assert(GraphIsWeighted(g) == 0);
 
   // COMPLETE THE CODE
+  unsigned int numVertices = GraphGetNumVertices(g);
+  Graph *rslt = GraphCreate(numVertices, 1, 0); // pointer that will hold the transitive closure of g
 
-  return NULL;
+  for (unsigned int v = 0; v < numVertices; v++) // for each vertex of g
+  {
+    // generate the spanning tree to each other vertex
+    GraphBellmanFordAlg *spanningTree = GraphBellmanFordAlgExecute(g, v);
+
+    // add edge from v to all reachable vertices
+    for (unsigned int i = 0; i < GraphGetNumVertices(g); i++)
+    {
+      if (GraphBellmanFordAlgReached(spanningTree, i) == 1) // if i is reachable through v
+      {
+        GraphAddEdge(rslt, v, i); // add edge from v to i
+      }
+    }
+
+    GraphBellmanFordAlgDestroy(&spanningTree); // housekeeping
+  }
+
+  return rslt;
 }
