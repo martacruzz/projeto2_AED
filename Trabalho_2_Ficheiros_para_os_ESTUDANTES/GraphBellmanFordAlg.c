@@ -85,7 +85,7 @@ GraphBellmanFordAlg *GraphBellmanFordAlgExecute(Graph *g,
 
   // "relaxation" process
   // this process is done at most #v - 1 times
-  for (unsigned int v = 0; v < GraphGetNumVertices(result->graph) - 1; v++) // for #v - 1 times
+  for (unsigned int i = 0; i < GraphGetNumVertices(result->graph) - 1; i++) // for #v - 1 times
   {
 
     for (unsigned int v = 0; v < GraphGetNumVertices(result->graph); v++) // go through all vertices
