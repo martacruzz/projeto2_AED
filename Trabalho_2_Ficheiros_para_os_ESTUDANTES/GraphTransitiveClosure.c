@@ -42,7 +42,7 @@ Graph *GraphComputeTransitiveClosure(Graph *g)
     GraphBellmanFordAlg *spanningTree = GraphBellmanFordAlgExecute(g, v);
 
     // add edge from v to all reachable vertices
-    for (unsigned int i = 0; i < GraphGetNumVertices(g); i++)
+    for (unsigned int i = 0; i < numVertices; i++)
     {
       if (GraphBellmanFordAlgReached(spanningTree, i) == 1) // if i is reachable through v
       {
