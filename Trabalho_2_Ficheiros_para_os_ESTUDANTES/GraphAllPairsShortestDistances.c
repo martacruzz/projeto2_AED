@@ -39,7 +39,49 @@ GraphAllPairsShortestDistances *GraphAllPairsShortestDistancesExecute(
 
   // COMPLETE THE CODE
 
-  return NULL;
+  // Verifica se o grafo é direcionado
+  assert(GraphIsDigraph(g));
+
+  // Verifica se o grafo não é ponderado
+  assert(GraphIsWeighted(g) == 0);
+
+  // Aloca memória para a estrutura que armazenará os resultados
+  GraphAllPairsShortestDistances *result = (GraphAllPairsShortestDistances *)malloc(sizeof(GraphAllPairsShortestDistances));
+  assert(result != NULL); // Garante que a alocação foi bem-sucedida
+
+  // Associa o grafo original à estrutura de resultados
+  result->graph = g;
+
+  // Obtém o número total de vértices no grafo
+  unsigned int numVertices = GraphGetNumVertices(g);
+
+  // Aloca memória para a matriz de distâncias (array de ponteiros para linhas)
+  result->distance = (int **)malloc(numVertices * sizeof(int *));
+  assert(result->distance != NULL); // Garante que a matriz foi alocada corretamente
+
+  // Itera sobre cada vértice do grafo para calcular as distâncias
+  for (unsigned int v = 0; v < numVertices; v++) {
+    // Aloca memória para a linha correspondente ao vértice v na matriz
+    result->distance[v] = (int*)malloc(numVertices * sizeof(int));
+    assert(result->distance[v] != NULL); // Verifica se a alocação foi bem feita
+
+    // Executa o Algoritmo de Bellman-Ford para calcular as distâncias a partir do vértice v
+    GraphBellmanFordAlg* bellman_alg = GraphBellmanFordAlgExecute(g, v);
+
+    // Itera sobre todos os vértices para preencher as distâncias
+    for (unsigned int u = 0; u < numVertices; u++) {
+      // Se o vértice u for alcançável a partir do vértice v
+      if (GraphBellmanFordAlgReached(bellman_alg, u)) {
+        // Armazena a distância mínima de v até u na matriz
+        result->distance[v][u] = GraphBellmanFordAlgDistance(bellman_alg, u);
+      }
+    }
+
+    // Liberta os recursos usados pela execução do Algoritmo de Bellman-Ford
+    GraphBellmanFordAlgDestroy(&bellman_alg);
+  }
+
+  return result;
 }
 
 void GraphAllPairsShortestDistancesDestroy(GraphAllPairsShortestDistances **p)
