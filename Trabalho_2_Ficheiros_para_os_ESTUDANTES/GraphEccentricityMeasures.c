@@ -229,4 +229,5 @@ void GraphEccentricityMeasuresPrint(const GraphEccentricityMeasures *p)
   for (unsigned int v = 1; v <= numCentralVertices; v++) {
     printf("%u ", p->centralVertices[v]);
   }
+  printf("\n");
 }
