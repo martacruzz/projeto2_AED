@@ -14,23 +14,27 @@
 
 typedef struct _GraphBellmanFordAlg GraphBellmanFordAlg;
 
-GraphBellmanFordAlg* GraphBellmanFordAlgExecute(Graph* g,
+// Init Image library.  (Call once!)
+// Currently, simply calibrate instrumentation and set names of counters.
+void BellmanInit(void);
+
+GraphBellmanFordAlg *GraphBellmanFordAlgExecute(Graph *g,
                                                 unsigned int startVertex);
 
-void GraphBellmanFordAlgDestroy(GraphBellmanFordAlg** p);
+void GraphBellmanFordAlgDestroy(GraphBellmanFordAlg **p);
 
 // Getting the result
 
-int GraphBellmanFordAlgReached(const GraphBellmanFordAlg* p, unsigned int v);
+int GraphBellmanFordAlgReached(const GraphBellmanFordAlg *p, unsigned int v);
 
-int GraphBellmanFordAlgDistance(const GraphBellmanFordAlg* p, unsigned int v);
+int GraphBellmanFordAlgDistance(const GraphBellmanFordAlg *p, unsigned int v);
 
-Stack* GraphBellmanFordAlgPathTo(const GraphBellmanFordAlg* p, unsigned int v);
+Stack *GraphBellmanFordAlgPathTo(const GraphBellmanFordAlg *p, unsigned int v);
 
 // DISPLAYING on the console
 
-void GraphBellmanFordAlgShowPath(const GraphBellmanFordAlg* p, unsigned int v);
+void GraphBellmanFordAlgShowPath(const GraphBellmanFordAlg *p, unsigned int v);
 
-void GraphBellmanFordAlgDisplayDOT(const GraphBellmanFordAlg* p);
+void GraphBellmanFordAlgDisplayDOT(const GraphBellmanFordAlg *p);
 
-#endif  // _GRAPH_BELLMAN_FORD_ALG_
+#endif // _GRAPH_BELLMAN_FORD_ALG_

@@ -11,6 +11,10 @@
 
 #include "Graph.h"
 
-Graph* GraphComputeTransitiveClosure(Graph* g);
+// Init Image library.  (Call once!)
+// Currently, simply calibrate instrumentation and set names of counters.
+void TransitiveInit(void);
 
-#endif  // _GRAPH_TRANSITIVE_CLOSURE_
+Graph *GraphComputeTransitiveClosure(Graph *g);
+
+#endif // _GRAPH_TRANSITIVE_CLOSURE_

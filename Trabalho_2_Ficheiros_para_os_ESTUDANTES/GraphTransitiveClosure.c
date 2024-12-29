@@ -25,7 +25,7 @@
 
 // Init Image library.  (Call once!)
 // Currently, simply calibrate instrumentation and set names of counters.
-void TopoInit(void)
+void TransitiveInit(void)
 { ///
   InstrCalibrate();
   // Name counters here...

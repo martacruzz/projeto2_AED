@@ -21,13 +21,14 @@ int main(int argc, char **argv)
     exit(1);
   }
 
-  unsigned int MINVERTICE = argv[1];
-  unsigned int INCVERTICE = argv[2];
-  unsigned int MAXVERTICE = argv[3];
-  unsigned int CASE = argv[4]; // 0 -> bellman best ; 1 -> bellman worst; 2 -> transitive best; 3 -> transitive worst
+  unsigned int MINVERTICE = atoi(argv[1]);
+  unsigned int INCVERTICE = atoi(argv[2]);
+  unsigned int MAXVERTICE = atoi(argv[3]);
+  unsigned int CASE = atoi(argv[4]); // 0 -> bellman best ; 1 -> bellman worst; 2 -> transitive best; 3 -> transitive worst
 
   // Generate multiple graphs and output Instrumentation values
-  for (unsigned int i = MINVERTICE; i < MAXVERTICE; i += INCVERTICE)
+  Graph *g = NULL;
+  for (unsigned int i = MINVERTICE; i <= MAXVERTICE; i += INCVERTICE)
   {
     InstrReset();
 
@@ -35,23 +36,24 @@ int main(int argc, char **argv)
     {
     case 0:
       // bellman best case
-      Graph *g = GraphGenerateBellmanFordBest(i);
+      g = GraphGenerateBellmanFordBest(i);
       break;
     case 1:
       // bellman worst case
-      Graph *g = GraphGenerateBellmanFordWorst(i);
+      g = GraphGenerateBellmanFordWorst(i);
       break;
     case 2:
       // bellman best case
-      Graph *g = GraphGenerateTransitiveBest(i);
+      g = GraphGenerateTransitiveBest(i);
       break;
     case 3:
       // bellman best case
-      Graph *g = GraphGenerateTransitiveWorst(i);
+      g = GraphGenerateTransitiveWorst(i);
       break;
     default:
       break;
     }
-    InstrPrint(); // output data
+    InstrPrint();     // output data
+    GraphDestroy(&g); // housekeeping;
   }
 }

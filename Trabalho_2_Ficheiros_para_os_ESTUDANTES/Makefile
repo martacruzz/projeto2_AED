@@ -26,7 +26,8 @@ TestTransitiveClosure: TestTransitiveClosure.o Graph.o GraphBellmanFordAlg.o \
  GraphTransitiveClosure.o IntegersStack.o SortedList.o instrumentation.o
 
 GraphTester: GraphTester.o Graph.o GraphBellmanFordAlg.o \
- GraphTransitiveClosure.o IntegersStack.o SortedList.o instrumentation.o
+  GraphTransitiveClosure.o IntegersStack.o SortedList.o instrumentation.o GraphGenerator.o
+
 
 # Dependencies of source files
 
@@ -66,7 +67,10 @@ TestTransitiveClosure.o: TestTransitiveClosure.c Graph.h GraphBellmanFordAlg.h \
  GraphTransitiveClosure.h instrumentation.h
 
 Graphtester.o: GraphTester.c Graph.h GraphBellmanFordAlg.h \
- GraphTransitiveClosure.h instrumentation.h
+ GraphTransitiveClosure.h instrumentation.h GraphGenerator.h
+
+GraphGenerator.o: GraphGenerator.c GraphGenerator.h Graph.h
+
 
 clean:
 	rm -f *.o
