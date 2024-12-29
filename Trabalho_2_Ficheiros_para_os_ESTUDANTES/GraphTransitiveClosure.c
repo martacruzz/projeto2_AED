@@ -23,6 +23,19 @@
 #include "GraphBellmanFordAlg.h"
 #include "instrumentation.h"
 
+// Init Image library.  (Call once!)
+// Currently, simply calibrate instrumentation and set names of counters.
+void TopoInit(void)
+{ ///
+  InstrCalibrate();
+  // Name counters here...
+  InstrName[0] = "iterations";
+}
+
+// Macros to simplify accessing instrumentation counters:
+// Add macros here...
+#define ITERATIONS InstrCount[0]
+
 // Compute the transitive closure of a directed graph
 // Return the computed transitive closure as a directed graph
 // Use the Bellman-Ford algorithm
@@ -39,7 +52,7 @@ Graph *GraphComputeTransitiveClosure(Graph *g)
   for (unsigned int v = 0; v < numVertices; v++) // for each vertex of g
   {
     // generate the spanning tree to each other vertex
-    GraphBellmanFordAlg *spanningTree = GraphBellmanFordAlgExecute(g, v);
+    GraphBellmanFordAlg *spanningTree = GraphBellmanFordAlgExecute(g, v); // the cost of this operation is calculated internally
 
     // add edge from v to all reachable vertices
     for (unsigned int i = 0; i < numVertices; i++)
@@ -47,6 +60,7 @@ Graph *GraphComputeTransitiveClosure(Graph *g)
       if (GraphBellmanFordAlgReached(spanningTree, i) == 1) // if i is reachable through v
       {
         GraphAddEdge(rslt, v, i); // add edge from v to i
+        ITERATIONS++;
       }
     }
 

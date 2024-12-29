@@ -23,6 +23,19 @@
 #include "IntegersStack.h"
 #include "instrumentation.h"
 
+// Init Image library.  (Call once!)
+// Currently, simply calibrate instrumentation and set names of counters.
+void TopoInit(void)
+{ ///
+  InstrCalibrate();
+  // Name counters here...
+  InstrName[0] = "iterations";
+}
+
+// Macros to simplify accessing instrumentation counters:
+// Add macros here...
+#define ITERATIONS InstrCount[0]
+
 struct _GraphBellmanFordAlg
 {
   unsigned int *marked; // To mark vertices when reached for the first time
@@ -104,6 +117,7 @@ GraphBellmanFordAlg *GraphBellmanFordAlgExecute(Graph *g,
           result->predecessor[adj] = v;                    // update predecessor
           result->marked[adj] = 1;                         // mark vertex
           update = 1;                                      // state something changed
+          ITERATIONS++;
         }
       }
 
