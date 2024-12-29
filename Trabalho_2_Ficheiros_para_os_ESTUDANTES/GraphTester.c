@@ -1,7 +1,7 @@
 // This module presents the testings done to obtain the matlab
 // graphs necessary for the development of the technical report
 
-// Created by: Marta Cruz
+// Created by: Marta Cruz (119572)
 
 #include <assert.h>
 #include <stdio.h>
@@ -21,6 +21,9 @@ int main(int argc, char **argv)
     exit(1);
   }
 
+  BellmanInit();
+  TransitiveInit();
+
   unsigned int MINVERTICE = atoi(argv[1]);
   unsigned int INCVERTICE = atoi(argv[2]);
   unsigned int MAXVERTICE = atoi(argv[3]);
@@ -28,6 +31,8 @@ int main(int argc, char **argv)
 
   // Generate multiple graphs and output Instrumentation values
   Graph *g = NULL;
+  GraphBellmanFordAlg *result_bellman = NULL;
+  Graph *result_transitive = NULL;
   for (unsigned int i = MINVERTICE; i <= MAXVERTICE; i += INCVERTICE)
   {
     InstrReset();
@@ -37,23 +42,31 @@ int main(int argc, char **argv)
     case 0:
       // bellman best case
       g = GraphGenerateBellmanFordBest(i);
+      result_bellman = GraphBellmanFordAlgExecute(g, 0);
+      GraphBellmanFordAlgDestroy(&result_bellman); // housekeeping;
       break;
     case 1:
       // bellman worst case
       g = GraphGenerateBellmanFordWorst(i);
+      result_bellman = GraphBellmanFordAlgExecute(g, 0);
+      GraphBellmanFordAlgDestroy(&result_bellman); // housekeeping;
       break;
     case 2:
-      // bellman best case
+      // transitive best case
       g = GraphGenerateTransitiveBest(i);
+      result_transitive = GraphComputeTransitiveClosure(g);
+      GraphDestroy(&result_transitive); // housekeeping;
       break;
     case 3:
-      // bellman best case
+      // transitive worst case
       g = GraphGenerateTransitiveWorst(i);
+      result_transitive = GraphComputeTransitiveClosure(g);
+      GraphDestroy(&result_transitive); // housekeeping;
       break;
     default:
       break;
     }
-    InstrPrint();     // output data
+    InstrPrintTest(); // output data
     GraphDestroy(&g); // housekeeping;
   }
 }

@@ -15,14 +15,8 @@
 
 Graph *GraphGenerateBellmanFordWorst(unsigned int numVertices)
 {
-  // Generate an in-line unweighted digraph (WC for the bellman-ford module)
-  Graph *g = GraphCreate(numVertices, 1, 0);
-
-  for (unsigned int v = 0; v < numVertices - 1; v++)
-  {
-    GraphAddEdge(g, v, v + 1);
-  }
-
+  // Generate complete unweighted digraph (WC for the bellman-ford module)
+  Graph *g = GraphCreateComplete(numVertices, 1);
   return g;
 }
 

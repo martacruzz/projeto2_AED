@@ -117,8 +117,8 @@ GraphBellmanFordAlg *GraphBellmanFordAlgExecute(Graph *g,
           result->predecessor[adj] = v;                    // update predecessor
           result->marked[adj] = 1;                         // mark vertex
           update = 1;                                      // state something changed
-          ITERATIONS++;
         }
+        ITERATIONS++;
       }
 
       free(adjacents);

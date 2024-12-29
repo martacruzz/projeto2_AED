@@ -5,3 +5,4 @@ TestBellmanFordAlg
 TestCreateTranspose
 TestEccentricityMeasures
 TestTransitiveClosure
+GraphTester
