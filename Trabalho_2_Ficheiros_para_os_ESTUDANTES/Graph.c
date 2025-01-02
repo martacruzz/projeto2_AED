@@ -159,7 +159,7 @@ Graph *GraphCreateComplete(unsigned int numVertices, int isDigraph)
 
 // Create the transpose of a directed graph
 // This function should never be called on an undirected graph
-// This function should never be called on a complete graph
+
 Graph *GraphCreateTranspose(const Graph *g)
 {
   assert(g != NULL);
